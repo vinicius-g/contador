@@ -148,6 +148,7 @@ body {
 }
 
 #timer-container button.bloqueado {
+    background-color: #aaa;
     pointer-events: none;
 }
 
@@ -176,5 +177,11 @@ body {
 }
 
 #btn-container button.bloqueado {
+    background-color: #aaa;
+    pointer-events: none;
+}
+
+#btn-container button.pausado {
+    background-color: #aaa;
     pointer-events: none;
 }

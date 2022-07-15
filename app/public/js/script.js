@@ -42,6 +42,8 @@ nextNumContainers.forEach((nextNumContainer, index) => {
 function awakeTopBtns() {
     topBtns.forEach((topBtn) => {
         topBtn.addEventListener("click", (e) => {
+            e.preventDefault()
+
             let selectedTimeContainer = e.target.dataset.topBtn
             chooseTimeTop(selectedTimeContainer)
             correctTime(selectedTimeContainer)
@@ -52,6 +54,8 @@ function awakeTopBtns() {
         })
 
         topBtn.addEventListener("mousedown", (e) => {
+            e.preventDefault()
+
             let selectedTimeContainer = e.target.dataset.topBtn
             interval = setInterval(() => {
                 chooseTimeTop(selectedTimeContainer)
@@ -251,6 +255,7 @@ startBtn.addEventListener("click", () => {
     saveLocalStorage("previousTimeSelected", JSON.stringify(times.previousTime))
     saveLocalStorage("nextTimeSelected", JSON.stringify(times.nextTime))
 
+    pauseBtn.classList.remove("pausado")
     startBtn.classList.add("bloqueado")
     topBtns.forEach((topBtn) => {
         topBtn.classList.add("bloqueado")
@@ -262,6 +267,7 @@ startBtn.addEventListener("click", () => {
 })
 
 pauseBtn.addEventListener("click", () => {
+    pauseBtn.classList.add("pausado")
     topBtns.forEach((topBtn) => {
         topBtn.classList.remove("bloqueado")
     })
@@ -278,14 +284,13 @@ var keys = []
 
 window.addEventListener("keydown", (e) => {
     keys.push(e.key)
+    e.preventDefault()
     
     if (keys.includes("Control") && e.key === "i" && !startBtn.classList.contains("bloqueado")) {
-        e.preventDefault()
         startBtn.click()
     }
 
     if (keys.includes("Control") && e.key === "p") {
-        e.preventDefault()
         pauseBtn.click()
     }
 })
